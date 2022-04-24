@@ -10,7 +10,6 @@ import { Link as RouterLink} from "react-router-dom";
 function Header(){
     const [ isOpen, setIsOpen] = useState(false)
   return (
-
       <div >
         <AppBar position="static">
           <Toolbar variant="dense">

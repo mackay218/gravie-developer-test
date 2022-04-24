@@ -58,7 +58,6 @@ function Checkout(){
                                     return <div>{game.title}</div>
                                 })}
                             </div>}
-                        
                     </div>
                 : null}
             </div>
