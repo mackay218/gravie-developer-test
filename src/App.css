@@ -52,3 +52,18 @@
 .sideNavItem{
   margin: 20px;
 }
+
+.searchForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.searchForm{
+  min-height: 20vh;
+}
+
+.searchResults{
+  min-height: 50vh;
+}

@@ -1,10 +1,7 @@
-import React, {useState} from 'react'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Header from './Header'
 import Search from './Search'
 import Checkout from './Checkout'
-import { Link } from "react-router-dom";
-
 import './App.css';
 
 
