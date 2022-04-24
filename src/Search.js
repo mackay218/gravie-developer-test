@@ -1,14 +1,20 @@
-import React, {useState} from 'react'
+import React, {useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Button, Input, CircularProgress } from '@mui/material'
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid'
 import './App.css'
 import {callAPI} from './apiCalls'
+import { SelectedGamesContext } from './App'
 
 function Search(){
+    const navigate = useNavigate()
+    const { dispatch } = useContext(SelectedGamesContext)
     const [searchInput, setSearchInput] = useState('')
     const [searching, setSearching] = useState(false)
     const [data, setData] = useState()
     const [error, setError] = useState('')
+    const [selectedGames, setSelectedGames] = useState([])
+
 
     const formatData = (data) => {
         const formattedData = []
@@ -18,7 +24,7 @@ function Search(){
                 formattedData.push({
                     id: `${item.name}_${count}`,
                     title: item.name,
-                    image: item.image.icon_url
+                    image: { url: item.image.icon_url, name: item.name}
                 })
             }
         }
@@ -40,6 +46,14 @@ function Search(){
         setSearching(false)
     }
 
+    const handleCheckoutClick = async () => {
+        console.log('handleCheckoutClick', selectedGames)
+        if(selectedGames){
+           await dispatch({type: 'UPDATE_SELECTED_GAMES', data: selectedGames})
+        }
+        navigate('/checkout')
+    }
+
     const columns = [
         {field: 'id',
             headerName: 'ID',
@@ -48,11 +62,13 @@ function Search(){
         {
             field: 'title',
             headerName: 'Title',
+            flex: 1,
         },
         {
             field:'image',
-            headerName: 'image',
-            renderCell: (params) => {return <img src={params.value}/>}
+            headerName: 'Image',
+            flex: 1,
+            renderCell: (params) => {return <img src={params.value.url} alt={params.value.name}/>}
         }
     ]
 
@@ -81,16 +97,29 @@ function Search(){
             <div className="searchResults">
                 {error ? <div>{error} </div> : 
                     data ? 
-                    <div style={{height: '50vh'}}>
+                    <div style={{height: '40vh'}}>
              
                         <DataGrid
-                        rows={data}
-                        columns={columns}
-                        checkboxSelection
-                        disableSelectionOnClick
-                    />
+                            rows={data}
+                            columns={columns}
+                            checkboxSelection
+                            onSelectionModelChange={(ids) => {
+                                const selectedIDs = new Set(ids);
+                                const selectedRowData = data.filter((row) =>
+                                selectedIDs.has(row.id.toString())
+                                )
+                                setSelectedGames(selectedRowData)
+                            }}
+                        />
+                        <Button 
+                                disabled={selectedGames.length ? false : true} 
+                                onClick={() => {handleCheckoutClick()}}
+                        >
+                            Checkout
+                        </Button>
                     </div>
                 : null}
+                
             </div>
         </div>
       
