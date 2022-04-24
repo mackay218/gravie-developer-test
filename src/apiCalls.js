@@ -9,7 +9,6 @@ export const callAPI = async (searchInput, apiKey) => {
       }
 
     let res = await fetchJsonp(url, options).then(function(response) {
-          console.log(response.json());
           return response.json();
         })
     return res

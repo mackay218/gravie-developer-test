@@ -28,7 +28,6 @@ function Search(){
     const handleSearchClick = async () => {
         setSearching(true)
         const response = await callAPI(searchInput, process.env.REACT_APP_API_KEY)
-        console.log('response', response)
         if(response){
             if(response.error === 'OK'){
                 setData(formatData(response.results))
