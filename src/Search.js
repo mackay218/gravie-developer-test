@@ -15,7 +15,6 @@ function Search(){
     const [error, setError] = useState('')
     const [selectedGames, setSelectedGames] = useState([])
 
-
     const formatData = (data) => {
         const formattedData = []
         let count = 0
@@ -98,7 +97,6 @@ function Search(){
                 {error ? <div>{error} </div> : 
                     data ? 
                     <div style={{height: '40vh'}}>
-             
                         <DataGrid
                             rows={data}
                             columns={columns}
@@ -119,7 +117,6 @@ function Search(){
                         </Button>
                     </div>
                 : null}
-                
             </div>
         </div>
       

@@ -25,8 +25,6 @@ function App() {
           </Router>
       </div>
     </SelectedGamesContext.Provider>
-  
-  
   )
 }
 
