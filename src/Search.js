@@ -1,6 +1,6 @@
 import React, {useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Button, Input, CircularProgress } from '@mui/material'
+import { Button, Input, CircularProgress, Link } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
 import './App.css'
 import {callAPI} from './apiCalls'
@@ -8,7 +8,7 @@ import { SelectedGamesContext } from './App'
 
 function Search(){
     const navigate = useNavigate()
-    const { dispatch } = useContext(SelectedGamesContext)
+    const {state, dispatch} = useContext(SelectedGamesContext)
     const [searchInput, setSearchInput] = useState('')
     const [searching, setSearching] = useState(false)
     const [data, setData] = useState()
@@ -45,11 +45,21 @@ function Search(){
         setSearching(false)
     }
 
-    const handleCheckoutClick = async () => {
-        console.log('handleCheckoutClick', selectedGames)
+    const handleAddClick = () => {
         if(selectedGames){
-           await dispatch({type: 'UPDATE_SELECTED_GAMES', data: selectedGames})
+           let gamesToSend = []
+           for(let item of state?.selectedGames){
+               gamesToSend.push(item)
+           }
+           for(let item of selectedGames){
+               gamesToSend.push(item)
+           }
+             dispatch({type: 'UPDATE_SELECTED_GAMES', data: gamesToSend})
         }
+        
+    }
+
+    const handleCheckoutClick = () => {
         navigate('/checkout')
     }
 
@@ -109,12 +119,19 @@ function Search(){
                                 setSelectedGames(selectedRowData)
                             }}
                         />
-                        <Button 
-                                disabled={selectedGames.length ? false : true} 
-                                onClick={() => {handleCheckoutClick()}}
+                        <Button disabled={selectedGames.length ? false : true} 
+                                onClick={() => {handleAddClick()}}
+                        >
+                            Add
+                        </Button>
+                        <Link 
+                            component={Button}
+                            to="/checkout"
+                            disabled={state?.selectedGames.length ? false : true} 
+                            onClick={() => {handleCheckoutClick()}}
                         >
                             Checkout
-                        </Button>
+                        </Link>
                     </div>
                 : null}
             </div>

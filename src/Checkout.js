@@ -5,7 +5,7 @@ import { SelectedGamesContext } from './App'
 import './App.css'
 
 function Checkout(){
-    const { state, dispatch } = useContext(SelectedGamesContext)
+    const { state } = useContext(SelectedGamesContext)
     const [data, setData] = useState()
     const [error, setError] = useState('')
     const [rented, setRented] = useState(false)
@@ -17,7 +17,6 @@ function Checkout(){
     }, [state])
 
     const handleRentClick = () => {
-        console.log(state.selectedGames)
         setRented(true);
     }
 
