@@ -36,18 +36,34 @@ After cloning:
 ### Continued work
 
 In the future I would add:
-    - Prices for the games
-    - Error handling to communicate issues to the user
-    - Form validation
-    - Unit and integration testing
-    - Auth for signing up and logging in
-    - A server with a SQL database to preserve data such as which games a user has currently rented
-    - A page for returning games
-    - A payment form
-    - Ability to remove games from the selected games on the checkout page
-    - Persist data for better UX when navigting to another page: 
-    - Pagination to API calls for viewing more games
-    - Additional search fields to limit searches, such as genre, dates etc.
-    - Enhanced styling and responsiveness
-    - Accessibility such as ARIA 
-    - Organize files into folders to separate the pages, store, addtional components etc.
+
+    * Prices for the games
+
+    * Error handling to communicate issues to the user
+
+    * Form validation
+
+    * Unit and integration testing
+
+    * Auth for signing up and logging in
+
+    * A server with a SQL database to preserve data such as which games a user has currently rented
+
+    * A page for returning games
+
+    * A payment form
+
+    * Ability to remove games from the selected games on the checkout page
+
+    * Persist data for better UX when navigting to another page
+
+    * Pagination to API calls for viewing more games
+
+    * Additional search fields to limit searches, such as genre, dates etc
+
+    * Enhanced styling and responsiveness
+
+    * Accessibility such as ARIA 
+
+    * Organize files into folders to separate the pages, store, addtional components etc
+    
