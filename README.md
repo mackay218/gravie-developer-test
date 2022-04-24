@@ -23,3 +23,10 @@ You can find a full list of API features [here](https://www.giantbomb.com/api/do
 ### Questions
 
 Don't hesitate to reach out with any questions. Remember we are more focused on seeing your development process than checking off a list of requirements, so be sure you are able to speak to your code and your thoughts behind it.
+
+
+### Start App
+After cloning:
+1. Install dependencies run the command: `npm install`
+2. Create a file called `.env.local` at the root of the project
+3. Add a variable and set value to the giant bomb API key `REACT_APP_API_KEY=[your key here]` ("[]" brackets are not needed.)
