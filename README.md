@@ -35,13 +35,13 @@ In the future I would add:
 
     * Pagination to API calls for viewing more games
 
-    * Additional search fields to limit searches, such as genre, dates etc
+    * Additional search fields to limit searches, such as genre, dates etc.
 
     * Enhanced styling and responsiveness
 
     * Accessibility such as ARIA 
 
-    * Organize files into folders to separate the pages, store, addtional components etc
+    * Organize files into folders to separate the pages, store, addtional components etc.
 
 ## Instructions
 After completing the challenge below, please send us an email with the location of your repository. If your repository is private, be sure to add us as collaborators so we can view your code.
