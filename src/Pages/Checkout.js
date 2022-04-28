@@ -52,6 +52,7 @@ function Checkout(){
     }
 
     const returnToSearch = () => {
+        dispatch({type: 'UPDATE_SELECTED_GAMES', data: []})
         setIsOpen(false)
         navigate('/search')
     }
