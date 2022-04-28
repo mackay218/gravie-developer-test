@@ -149,7 +149,6 @@ function Search(){
                 : null}
             </div>
         </div>
-      
     )
 }
 export default Search;

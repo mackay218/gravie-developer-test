@@ -106,7 +106,6 @@ function Checkout(){
                             columns={columns}
                         />
                         <div>Total: ${getTotalPrice()}</div>
-                        
                         <Button disabled={!data.length}onClick={() => {handleRentClick()}}>Rent</Button>
                         <Dialog open={isOpen} onClose={handleClose} aria-labelledby="checkout confirmation"
                                aria-describedby="checkout confirmation">

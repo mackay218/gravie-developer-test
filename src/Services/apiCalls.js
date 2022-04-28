@@ -5,7 +5,6 @@ export const callAPI = async (searchInput, apiKey) => {
     let options = {
         jsonpCallbackFunction: 'responseObject'
       }
-
     let res = await fetchJsonp(url, options).then(function(response) {
           return response.json();
         })
