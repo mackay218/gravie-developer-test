@@ -1,14 +1,22 @@
 import React, {useState, useContext, useEffect} from 'react'
 import { DataGrid } from '@mui/x-data-grid'
-import { Button } from '@mui/material'
+import { useNavigate } from 'react-router-dom';
+import {
+        Button,
+        Link, 
+        Dialog,
+        DialogActions, 
+        DialogContent, 
+        DialogTitle  } from '@mui/material'
 import { SelectedGamesContext } from '../App'
 import '../Styles/App.css'
 
 function Checkout(){
     const { state, dispatch } = useContext(SelectedGamesContext)
+    const navigate = useNavigate()
     const [data, setData] = useState()
     const [error, setError] = useState('')
-    const [rented, setRented] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
 
     useEffect(() => {
         if(state?.selectedGames){
@@ -17,7 +25,7 @@ function Checkout(){
     }, [state])
 
     const handleRentClick = () => {
-        setRented(true);
+        setIsOpen(true);
     }
 
     const handleRemoveClick = (item) => {
@@ -28,6 +36,24 @@ function Checkout(){
             return null
         })
         dispatch({type: 'UPDATE_SELECTED_GAMES', data: selectedGames})
+    }
+
+    const getTotalPrice = () => {
+        let total = 0;
+        for(let game of data){
+            total += game.price
+        }
+        return total.toFixed(2)
+    }
+
+    const handleClose = () => {
+        dispatch({type: 'UPDATE_SELECTED_GAMES', data: []})
+        setIsOpen(false)
+    }
+
+    const returnToSearch = () => {
+        setIsOpen(false)
+        navigate('/search')
     }
 
     const columns = [
@@ -51,6 +77,16 @@ function Checkout(){
             headerName: '',
             flex: 2,
             renderCell: (params) => {return <Button onClick={() => {handleRemoveClick(params)}}>Remove</Button>}
+        },
+        {
+            field:'platform',
+            headerName: 'Platform',
+            flex: 1,
+        },{
+            field: 'price',
+            headerName: 'Price',
+            flex: 2,
+            renderCell: (params) => {return <div>{params.value.toFixed(2)}</div>}
         }
     ]
 
@@ -67,12 +103,33 @@ function Checkout(){
                             }}
                             rows={data}
                             columns={columns}
-                        />{!rented ? <Button onClick={() => {handleRentClick()}}>Rent</Button> : <div>
-                                Congrats you have rented: 
+                        />
+                        <div>Total: ${getTotalPrice()}</div>
+                        
+                        <Button disabled={!data.length}onClick={() => {handleRentClick()}}>Rent</Button>
+                        <Dialog open={isOpen} onClose={handleClose} aria-labelledby="checkout confirmation"
+                               aria-describedby="checkout confirmation">
+                            <DialogTitle>
+                            {"Confirmation"}
+                            </DialogTitle>
+                            <DialogContent >
+                                You have rented the following games: 
                                 {state.selectedGames.map((game) => {
                                     return <div>{game.title}</div>
                                 })}
-                            </div>}
+                                Thank You!
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={() => {handleClose()}}>Close</Button>
+                                <Link 
+                                    component={Button}
+                                    to="/search"
+                                    onClick={() => {returnToSearch()}}
+                                >
+                                    Return To Search
+                                </Link>
+                            </DialogActions>
+                        </Dialog>
                     </div>
                 : null}
             </div>

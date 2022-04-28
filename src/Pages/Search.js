@@ -26,7 +26,8 @@ function Search(){
                     image: { url: item.image.icon_url, name: item.name},
                     platform: item.platforms.map((platform) => {
                         return platform.abbreviation
-                    })
+                    }),
+                    price: 3,
                 })
             }
         }
@@ -85,6 +86,11 @@ function Search(){
             field:'platform',
             headerName: 'Platform',
             flex: 1,
+        },{
+            field: 'price',
+            headerName: 'Price',
+            flex: 2,
+            renderCell: (params) => {return <div>{params.value.toFixed(2)}</div>}
         }
     ]
 

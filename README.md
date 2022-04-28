@@ -15,8 +15,6 @@ After cloning:
 
 In the future I would add:
 
-    * Prices for the games
-
     * Error handling to communicate issues to the user
 
     * Form validation
@@ -31,9 +29,7 @@ In the future I would add:
 
     * A payment form
 
-    * Ability to remove games from the selected games on the checkout page
-
-    * Persist data for better UX when navigting to another page
+    * Persist data for better UX when navigating to another page
 
     * Pagination to API calls for viewing more games
 
