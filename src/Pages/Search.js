@@ -23,7 +23,10 @@ function Search(){
                 formattedData.push({
                     id: `${item.name}_${count}`,
                     title: item.name,
-                    image: { url: item.image.icon_url, name: item.name}
+                    image: { url: item.image.icon_url, name: item.name},
+                    platform: item.platforms.map((platform) => {
+                        return platform.abbreviation
+                    })
                 })
             }
         }
@@ -78,6 +81,10 @@ function Search(){
             headerName: 'Image',
             flex: 1,
             renderCell: (params) => {return <img src={params.value.url} alt={params.value.name}/>}
+        },{
+            field:'platform',
+            headerName: 'Platform',
+            flex: 1,
         }
     ]
 
