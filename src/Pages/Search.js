@@ -2,9 +2,9 @@ import React, {useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Button, Input, CircularProgress, Link } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
-import './App.css'
-import {callAPI} from './apiCalls'
-import { SelectedGamesContext } from './App'
+import '../Styles/App.css'
+import {callAPI} from '../Services/apiCalls'
+import { SelectedGamesContext } from '../App'
 
 function Search(){
     const navigate = useNavigate()
@@ -23,7 +23,11 @@ function Search(){
                 formattedData.push({
                     id: `${item.name}_${count}`,
                     title: item.name,
-                    image: { url: item.image.icon_url, name: item.name}
+                    image: { url: item.image.icon_url, name: item.name},
+                    platform: item.platforms.map((platform) => {
+                        return platform.abbreviation
+                    }),
+                    price: 3,
                 })
             }
         }
@@ -54,7 +58,7 @@ function Search(){
            for(let item of selectedGames){
                gamesToSend.push(item)
            }
-             dispatch({type: 'UPDATE_SELECTED_GAMES', data: gamesToSend})
+           dispatch({type: 'UPDATE_SELECTED_GAMES', data: gamesToSend})
         }
         
     }
@@ -78,6 +82,15 @@ function Search(){
             headerName: 'Image',
             flex: 1,
             renderCell: (params) => {return <img src={params.value.url} alt={params.value.name}/>}
+        },{
+            field:'platform',
+            headerName: 'Platform',
+            flex: 1,
+        },{
+            field: 'price',
+            headerName: 'Price',
+            flex: 2,
+            renderCell: (params) => {return <div>{params.value.toFixed(2)}</div>}
         }
     ]
 

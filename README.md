@@ -1,10 +1,12 @@
 # Gravie Software Engineer Challenge
 
+
+
 ### Start App
 After cloning:
 1. Install dependencies, run the command: `npm install`
 2. Create a file called `.env.local` at the root of the project
-3. Add a variable and set value to the giant bomb API key `REACT_APP_API_KEY=[your key here]` ("[]" brackets are not needed.)
+3. Add the following variable with the value of your api key `REACT_APP_API_KEY=[your key here]` ("[]" brackets are not needed.) You can get API key [here](https://www.giantbomb.com/api/).
 4. Run the command `npm start`
 5. App will be viewable at localhost:3000
 
@@ -12,8 +14,6 @@ After cloning:
 ### Continued work
 
 In the future I would add:
-
-    * Prices for the games
 
     * Error handling to communicate issues to the user
 
@@ -29,9 +29,7 @@ In the future I would add:
 
     * A payment form
 
-    * Ability to remove games from the selected games on the checkout page
-
-    * Persist data for better UX when navigting to another page
+    * Persist data for better UX when navigating to another page
 
     * Pagination to API calls for viewing more games
 

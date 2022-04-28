@@ -1,10 +1,10 @@
 import {createContext, useReducer} from 'react'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import Header from './Header'
-import Search from './Search'
-import Checkout from './Checkout'
-import {initialState, selectedGamesReducer} from './store'
-import './App.css';
+import Header from './GlobalComponents/Header'
+import Search from './Pages/Search'
+import Checkout from './Pages/Checkout'
+import {initialState, selectedGamesReducer} from './GlobalStore/store'
+import './Styles/App.css';
 import { createBrowserHistory } from 'history';
 export const history = createBrowserHistory();
 
