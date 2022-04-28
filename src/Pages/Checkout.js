@@ -1,11 +1,11 @@
 import React, {useState, useContext, useEffect} from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 import { Button } from '@mui/material'
-import { SelectedGamesContext } from './App'
-import './App.css'
+import { SelectedGamesContext } from '../App'
+import '../Styles/App.css'
 
 function Checkout(){
-    const { state } = useContext(SelectedGamesContext)
+    const { state, dispatch } = useContext(SelectedGamesContext)
     const [data, setData] = useState()
     const [error, setError] = useState('')
     const [rented, setRented] = useState(false)
@@ -18,6 +18,16 @@ function Checkout(){
 
     const handleRentClick = () => {
         setRented(true);
+    }
+
+    const handleRemoveClick = (item) => {
+       const selectedGames = state.selectedGames.filter((game) => {
+            if(item.id !== game.id){
+                return game
+            }
+            return null
+        })
+        dispatch({type: 'UPDATE_SELECTED_GAMES', data: selectedGames})
     }
 
     const columns = [
@@ -35,6 +45,12 @@ function Checkout(){
             headerName: 'Image',
             flex: 1,
             renderCell: (params) => {return <img src={params.value.url} alt={params.value.name}/>}
+        },
+        {
+            field:'remove',
+            headerName: '',
+            flex: 2,
+            renderCell: (params) => {return <Button onClick={() => {handleRemoveClick(params)}}>Remove</Button>}
         }
     ]
 

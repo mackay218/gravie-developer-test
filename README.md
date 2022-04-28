@@ -1,10 +1,12 @@
 # Gravie Software Engineer Challenge
 
+
+
 ### Start App
 After cloning:
 1. Install dependencies, run the command: `npm install`
 2. Create a file called `.env.local` at the root of the project
-3. Add a variable and set value to the giant bomb API key `REACT_APP_API_KEY=[your key here]` ("[]" brackets are not needed.)
+3. Add the following variable with the value of your api key `REACT_APP_API_KEY=[your key here]` ("[]" brackets are not needed.) You can get API key [here](https://www.giantbomb.com/api/).
 4. Run the command `npm start`
 5. App will be viewable at localhost:3000
 

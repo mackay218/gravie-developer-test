@@ -2,9 +2,9 @@ import React, {useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Button, Input, CircularProgress, Link } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
-import './App.css'
-import {callAPI} from './apiCalls'
-import { SelectedGamesContext } from './App'
+import '../Styles/App.css'
+import {callAPI} from '../Services/apiCalls'
+import { SelectedGamesContext } from '../App'
 
 function Search(){
     const navigate = useNavigate()
@@ -54,7 +54,7 @@ function Search(){
            for(let item of selectedGames){
                gamesToSend.push(item)
            }
-             dispatch({type: 'UPDATE_SELECTED_GAMES', data: gamesToSend})
+           dispatch({type: 'UPDATE_SELECTED_GAMES', data: gamesToSend})
         }
         
     }
